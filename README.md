@@ -10,3 +10,5 @@ This gas file is then loaded in attpc.C for faster calculations when trying vari
 This code assumes the Garfield and Magboltz frameworks are already installed.
 These programs used cmake to generate the Makefile from the CMakeLists.txt file.
 Running the Makefile creates two executables "gastable" and "attpc".
+
+Running "attpc" should create the correction file named "electrons.txt" that can be used in Spyral and ATTPCROOT.
