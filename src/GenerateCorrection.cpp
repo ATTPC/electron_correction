@@ -29,14 +29,8 @@ namespace ElectronCorrection
     static constexpr double s_cathodeDist = 100.33;
     // Distance of Anode plane [cm]
     static constexpr double s_anodeDist = 2.75;
-    // Voltage on Cathode [V]
-    static constexpr double s_cathodeV = -45000;
-    // Voltage on Anode [V]
-    static constexpr double s_anodeV = -2070;
-    // Voltage on first ring [v]
-    static constexpr double s_firstRingV = -2870;
 
-    void GenerateElectronCorrection(const std::filesystem::path &outputPath, const std::filesystem::path &gasPath)
+    void GenerateElectronCorrection(const std::filesystem::path &outputPath, const std::filesystem::path &gasPath, const DetectorParameters &detectorParams)
     {
         if (!std::filesystem::exists(gasPath))
         {
@@ -56,7 +50,7 @@ namespace ElectronCorrection
         double volts, xcoord;
         for (int i = 0; i < s_nRings; i++)
         {
-            volts = s_firstRingV + i * (s_cathodeV - s_firstRingV) / ((double)s_nRings);
+            volts = detectorParams.firstRingVoltage + i * (detectorParams.cathodeVoltage - detectorParams.firstRingVoltage) / ((double)s_nRings);
             xcoord = s_firstRingDist + i * s_ringStep;
             cage.AddWire(xcoord, s_outerRingDiameter / 2, s_ringDiameter, volts, "r");
             cage.AddWire(xcoord, -s_outerRingDiameter / 2, s_ringDiameter, volts, "r");
@@ -67,13 +61,13 @@ namespace ElectronCorrection
         // Add Cathode plane
         for (int i = -46; i <= 46; i++)
         {
-            cage.AddWire(s_cathodeDist, i * 0.635, 0.634, s_cathodeV, "c"); // use wires instead of plane
+            cage.AddWire(s_cathodeDist, i * 0.635, 0.634, detectorParams.cathodeVoltage, "c"); // use wires instead of plane
         }
 
         // Add Anode plane
         for (double x = -27.5; x <= 27.5; x += 0.5)
         {
-            cage.AddWire(s_anodeDist, x, 0.499, s_anodeV, "a"); // use wires instead of plane
+            cage.AddWire(s_anodeDist, x, 0.499, detectorParams.anodeVoltage, "a"); // use wires instead of plane
         }
         cage.AddReadout("a");
         // Add the flange at ground potential

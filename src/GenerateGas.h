@@ -4,5 +4,5 @@
 
 namespace ElectronCorrection
 {
-    void GenerateGasFile(const std::filesystem::path &outputPath, const GasParameters &gasParams, const FieldParameters &fieldParams);
+    void GenerateGasFile(const std::filesystem::path &outputPath, const GasParameters &gasParams);
 }

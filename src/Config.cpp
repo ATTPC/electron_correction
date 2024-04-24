@@ -8,7 +8,7 @@
 
 namespace ElectronCorrection
 {
-    Config::Config() : m_gasParams(), m_fieldParams(), m_outputDir("Invalid"), m_correctionFileName("Invalid")
+    Config::Config() : m_gasParams(), m_detParams(), m_outputDir("Invalid"), m_correctionFileName("Invalid")
     {
     }
 
@@ -34,10 +34,14 @@ namespace ElectronCorrection
         m_gasParams.pressure = jsonData["gas_pressure(Torr)"];
         m_gasParams.temperature = jsonData["gas_temperature(K)"];
 
-        m_fieldParams.eFieldMin = jsonData["electric_field_min(V/cm)"];
-        m_fieldParams.eFieldMax = jsonData["electric_field_max(V/cm)"];
-        m_fieldParams.eFieldSteps = jsonData["electric_field_steps"];
-        m_fieldParams.bField = jsonData["magnetic_field(T)"];
+        m_gasParams.eFieldMin = jsonData["electric_field_min(V/cm)"];
+        m_gasParams.eFieldMax = jsonData["electric_field_max(V/cm)"];
+        m_gasParams.eFieldSteps = jsonData["electric_field_steps"];
+        m_gasParams.bField = jsonData["magnetic_field(T)"];
+
+        m_detParams.cathodeVoltage = jsonData["cathode_voltage(V)"];
+        m_detParams.anodeVoltage = jsonData["anode_voltage(V)"];
+        m_detParams.firstRingVoltage = jsonData["first_ring_voltage(V)"];
 
         return true;
     }

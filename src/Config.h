@@ -11,14 +11,17 @@ namespace ElectronCorrection
         std::string name = "Invalid";
         double pressure = 0.0;
         double temperature = 0.0;
-    };
-
-    struct FieldParameters
-    {
         double eFieldMin = 0.0;
         double eFieldMax = 0.0;
         int eFieldSteps = 0;
         double bField = 0.0;
+    };
+
+    struct DetectorParameters
+    {
+        double cathodeVoltage = 0.0;
+        double anodeVoltage = 0.0;
+        double firstRingVoltage = 0.0;
     };
 
     class Config
@@ -33,11 +36,11 @@ namespace ElectronCorrection
         std::filesystem::path GetCorrectionPath() const;
 
         const GasParameters &GetGasParameters() const { return m_gasParams; }
-        const FieldParameters &GetFieldParameters() const { return m_fieldParams; }
+        const DetectorParameters &GetDetectorParamters() const { return m_detParams; }
 
     private:
         GasParameters m_gasParams;
-        FieldParameters m_fieldParams;
+        DetectorParameters m_detParams;
         std::filesystem::path m_outputDir;
         std::string m_correctionFileName;
 
