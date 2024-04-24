@@ -2,3 +2,6 @@ bin/
 .vscode/
 build/
 *.json
+output/
+out/
+.DS_Store
