@@ -1,0 +1,14 @@
+{
+    "output_directory": "/home/gordon/electron_correction/output/",
+    "correction_file": "electrons_e20009.txt",
+    "gas_name": "deuterium",
+    "gas_pressure(Torr)": 600.0,
+    "gas_temperature(K)": 293.15,
+    "electric_field_min(V/cm)": 10.0,
+    "electric_field_max(V/cm)": 1000.0,
+    "electric_field_steps": 20,
+    "magnetic_field(T)": 3.0,
+    "cathode_voltage(V)": -60000.0,
+    "anode_voltage(V)": -3020.0,
+    "first_ring_voltage(V)": -3020.0
+}

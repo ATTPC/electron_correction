@@ -14,12 +14,13 @@ namespace ElectronCorrection
 
     bool Config::Deserialize(const std::filesystem::path &path)
     {
+        std::cout << "Loading configuration from " << path << "..." << std::endl;
         if (!std::filesystem::exists(path))
         {
             std::cout << "Config file " << path << " does not exist!" << std::endl;
             return false;
         }
-        else if (path.extension() != "json")
+        else if (path.extension() != ".json")
         {
             std::cout << "Config file " << path << " needs to have a .json extension (and be JSON data)" << std::endl;
             return false;
@@ -28,6 +29,15 @@ namespace ElectronCorrection
         nlohmann::json jsonData = nlohmann::json::parse(configFile);
 
         m_outputDir = std::filesystem::path(jsonData["output_directory"]);
+        if (!std::filesystem::exists(m_outputDir))
+        {
+            std::cout << "Creating output directory " << m_outputDir << std::endl;
+            if (!std ::filesystem::create_directory(m_outputDir))
+            {
+                std::cout << "Could not create output directory!" << std::endl;
+                return false;
+            }
+        }
         m_correctionFileName = jsonData["correction_file"];
 
         m_gasParams.name = jsonData["gas_name"];
@@ -43,6 +53,7 @@ namespace ElectronCorrection
         m_detParams.anodeVoltage = jsonData["anode_voltage(V)"];
         m_detParams.firstRingVoltage = jsonData["first_ring_voltage(V)"];
 
+        std::cout << "Configuration loaded succesfully!" << std::endl;
         return true;
     }
 

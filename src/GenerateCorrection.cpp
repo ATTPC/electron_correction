@@ -98,7 +98,7 @@ namespace ElectronCorrection
         std::ofstream output(outputPath);
         for (double x_initial = 3.0; x_initial < 100.0; x_initial += 1.0)
         {
-            for (double y_initial = -27.0; y_final < 27.0; y_final += 1.0)
+            for (double y_initial = -27.0; y_initial < 27.0; y_initial += 1.0)
             {
                 drift.DriftElectron(x_initial, y_initial, 0., 0.);
                 drift.GetEndPoint(x_final, y_final, z_final, t_final, st);
