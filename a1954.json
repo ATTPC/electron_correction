@@ -1,0 +1,14 @@
+{
+    "output_directory": "/home/gordon/electron_correction/output/",
+    "correction_file": "electrons_a1954.txt",
+    "gas_name": "hydrogen",
+    "gas_pressure(Torr)": 300.0,
+    "gas_temperature(K)": 293.15,
+    "electric_field_min(V/cm)": 10.0,
+    "electric_field_max(V/cm)": 1000.0,
+    "electric_field_steps": 20,
+    "magnetic_field(T)": 3.0,
+    "cathode_voltage(V)": -45000.0,
+    "anode_voltage(V)": -2070.0,
+    "first_ring_voltage(V)": -2870.0
+}
