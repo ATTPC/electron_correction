@@ -61,3 +61,12 @@ Configurations are specified using JSON files. The format is as follows:
 ```
 
 The above example is from the `e20009.json` example configuration shipped with the repository. The output directory will be created if it does not already exist.
+
+## What does it do?
+
+electron_correction is essentially a two step calculation. The first step is generating a gas file, which contains data about the gas and it's properties within a set of electromagnetic fields. This is generated using the MeduimMagboltz routines of Garfield++. The gas calculations are slow, and so the results of the gas calculation are saved to a file so they can be reused. 
+
+The second step is the actual calculation of the correction to the drifting electrons. This is done by using the gas data of the previous step combined with the geometry and field settings of the AT-TPC for a specific experiment. The output of this program is saved to a file, and is compatible with the Spyral analysis framework.
+
+It is recommended to, in general, first generate the gas file using the `--gen-gas` flag and then generate the correction using the `--gen-corr` flag. Then the gas file can be reused and you can avoid waiting for the gas calculation every time the correction is run for a given gas description.
+
