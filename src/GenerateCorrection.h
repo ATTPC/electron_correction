@@ -6,5 +6,5 @@
 
 namespace ElectronCorrection
 {
-    void GenerateElectronCorrection(const std::filesystem::path &outputPath, const std::filesystem::path &gasPath, const DetectorParameters &detectorParams);
+    void GenerateElectronCorrection(const std::filesystem::path &outputPath, const std::filesystem::path &gasPath, const DetectorParameters &detectorParams, const GasParameters &gasParams);
 }

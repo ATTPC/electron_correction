@@ -30,7 +30,7 @@ namespace ElectronCorrection
     // Distance of Anode plane [cm]
     static constexpr double s_anodeDist = 2.75;
 
-    void GenerateElectronCorrection(const std::filesystem::path &outputPath, const std::filesystem::path &gasPath, const DetectorParameters &detectorParams)
+    void GenerateElectronCorrection(const std::filesystem::path &outputPath, const std::filesystem::path &gasPath, const DetectorParameters &detectorParams, const GasParameters &gasParams)
     {
         if (!std::filesystem::exists(gasPath))
         {
@@ -78,7 +78,7 @@ namespace ElectronCorrection
         // Add a component for the solenoid
         Garfield::ComponentConstant solenoid;
         solenoid.SetMedium(&gas);
-        solenoid.SetMagneticField(3.0, 0, 0);
+        solenoid.SetMagneticField(gasParams.bField, 0, 0);
 
         std::cout << "Geometry set. Calculating correction..." << std::endl;
 
