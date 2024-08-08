@@ -42,8 +42,9 @@ int main(int argc, const char **argv)
         std::cout << "Generating gas file..." << std::endl;
         ElectronCorrection::GenerateGasFile(config.GetGasPath(), config.GetGasParameters());
         std::cout << "Generating correction file..." << std::endl;
-        ElectronCorrection::GenerateElectronCorrection(config.GetCorrectionPath(), config.GetGasPath(), config.GetDetectorParamters());
+        ElectronCorrection::GenerateElectronCorrection(config.GetCorrectionPath(), config.GetGasPath(), config.GetDetectorParamters(), config.GetGasParameters());
         std::cout << "Finished." << std::endl;
+        return 0;
     }
 
     std::string flag = argv[1];
@@ -70,7 +71,7 @@ int main(int argc, const char **argv)
     else if (flag == "--gen-corr")
     {
         std::cout << "Generating correction file..." << std::endl;
-        ElectronCorrection::GenerateElectronCorrection(config.GetCorrectionPath(), config.GetGasPath(), config.GetDetectorParamters());
+        ElectronCorrection::GenerateElectronCorrection(config.GetCorrectionPath(), config.GetGasPath(), config.GetDetectorParamters(), config.GetGasParameters());
         std::cout << "Finished." << std::endl;
     }
     else
